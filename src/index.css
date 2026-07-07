@@ -16,6 +16,29 @@ body {
   min-height: 100vh;
 }
 
+/* App header */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #f7f7f5;
+  border-bottom: 1px solid #eee;
+}
+
+.app-header-logo {
+  display: block;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  font-weight: 800;
+  color: #ff7a30;
+  cursor: pointer;
+  text-align: left;
+}
+
 h1 {
   font-size: 22px;
   margin-bottom: 8px;

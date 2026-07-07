@@ -7,6 +7,7 @@ import { FridgeManagePage } from './pages/FridgeManagePage';
 import { RecommendResultPage } from './pages/RecommendResultPage';
 import { RecipeDetailPage } from './pages/RecipeDetailPage';
 import { ErrorState } from './components/ErrorState';
+import { AppHeader } from './components/AppHeader';
 
 export function App() {
   const { ready, error } = useAnonymousAuth();
@@ -29,6 +30,7 @@ export function App() {
 
   return (
     <BrowserRouter>
+      <AppHeader />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/select-ingredients" element={<IngredientSelectPage />} />
