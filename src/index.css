@@ -1,0 +1,409 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  background: #f7f7f5;
+  color: #1f1f1f;
+}
+
+.page {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 24px 20px 80px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+h2 {
+  font-size: 16px;
+  margin: 20px 0 8px;
+}
+
+.muted {
+  color: #888;
+}
+
+/* Buttons */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: #ff7a30;
+  color: #fff;
+}
+
+.btn-secondary {
+  background: #fff;
+  color: #ff7a30;
+  border: 1px solid #ff7a30;
+}
+
+.btn-text {
+  width: auto;
+  display: inline-block;
+  background: none;
+  color: #555;
+  text-decoration: underline;
+  padding: 6px 4px;
+}
+
+.btn-text.danger {
+  color: #d64545;
+}
+
+/* Home */
+.home-page {
+  text-align: center;
+  padding-top: 80px;
+}
+
+.service-logo {
+  font-size: 32px;
+  font-weight: 800;
+  color: #ff7a30;
+}
+
+.tagline {
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.home-actions {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Inputs */
+.search-input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+/* Category filter */
+.category-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.category-chip {
+  padding: 6px 12px;
+  border-radius: 16px;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.category-chip.active {
+  background: #ff7a30;
+  color: #fff;
+  border-color: #ff7a30;
+}
+
+/* Ingredient list */
+.ingredient-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.ingredient-list-item {
+  padding: 8px 14px;
+  border-radius: 16px;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.ingredient-list-item.selected {
+  background: #ffe4d1;
+  border-color: #ff7a30;
+  color: #ff7a30;
+}
+
+.selected-chip-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+  min-height: 32px;
+}
+
+/* Chip */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  border-radius: 14px;
+  background: #eee;
+  font-size: 13px;
+}
+
+.chip-remove {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #888;
+  line-height: 1;
+}
+
+.inline-error {
+  color: #d64545;
+  font-size: 13px;
+  margin: 6px 0;
+}
+
+/* Empty / Error state */
+.empty-state,
+.error-state {
+  text-align: center;
+  padding: 40px 16px;
+  color: #666;
+}
+
+/* Fridge */
+.fridge-summary {
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.fridge-item-list,
+.fridge-editable-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.fridge-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.fridge-item.selected {
+  border-color: #ff7a30;
+  background: #fff5ee;
+}
+
+.fridge-item-name {
+  font-weight: 600;
+}
+
+.fridge-item-quantity {
+  color: #888;
+  font-size: 13px;
+}
+
+.fridge-editable-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+.fridge-editable-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  max-width: 360px;
+}
+
+.modal-field {
+  display: block;
+  margin: 12px 0;
+  font-size: 13px;
+  color: #555;
+}
+
+.modal-field input {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.modal-actions .btn-primary {
+  width: auto;
+}
+
+/* Recipe cards */
+.recipe-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.recipe-card {
+  text-align: left;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+}
+
+.recipe-card-time {
+  color: #888;
+  font-size: 13px;
+  margin: 4px 0;
+}
+
+.recipe-card-description {
+  font-size: 13px;
+  color: #555;
+}
+
+.recipe-card-ingredients {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.ingredient-tag {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 10px;
+}
+
+.ingredient-tag.matched {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.ingredient-tag.missing {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.info-badge {
+  background: #fff3e0;
+  color: #e65100;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin: 10px 0;
+}
+
+.selected-ingredients-summary {
+  color: #666;
+  font-size: 13px;
+}
+
+/* Recipe detail */
+.recipe-detail-time {
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.recipe-steps p {
+  margin: 6px 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.required-ingredients-list {
+  list-style: none;
+  padding: 0;
+}
+
+.required-ingredients-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+/* Toast */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.toast {
+  background: #1f1f1f;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+}
