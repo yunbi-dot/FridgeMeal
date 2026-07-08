@@ -1,10 +1,10 @@
 :root {
   --color-primary: #f86a1e;
   --color-primary-light: #faa046;
-  --color-bg-cream: #fcefdd;
+  --color-bg: #ffffff;
   --color-accent-sage: #bfe0b4;
   --color-accent-sage-text: #2f5d28;
-  --font-display: 'Baloo 2', 'Gaegu', -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --font-display: -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   --radius-card: 18px;
   --radius-control: 14px;
   --shadow-soft: 0 4px 16px rgba(248, 106, 30, 0.08);
@@ -18,8 +18,18 @@
 body {
   margin: 0;
   font-family: var(--font-display);
-  background: var(--color-bg-cream);
+  font-size: 17px;
+  background: var(--color-bg);
   color: #3a2c1e;
+}
+
+/* Buttons/inputs don't inherit the body font by default in most browsers,
+   which is what previously let them fall back to a different font. */
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
 }
 
 .page {
@@ -34,7 +44,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: var(--color-bg-cream);
+  background: var(--color-bg);
   border-bottom: 1px solid rgba(248, 106, 30, 0.12);
 }
 
@@ -62,21 +72,18 @@ body {
 }
 
 h1 {
-  font-size: 22px;
+  font-size: 28px;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 h2 {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 700;
   margin: 20px 0 8px;
 }
 
-body,
 p,
-input,
-button,
 li {
   font-weight: 500;
 }
@@ -90,12 +97,11 @@ li {
 .btn {
   display: block;
   width: 100%;
-  padding: 14px;
+  padding: 15px;
   margin: 10px 0;
   border-radius: var(--radius-control);
   border: none;
-  font-family: var(--font-display);
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 700;
   cursor: pointer;
   transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
@@ -137,7 +143,7 @@ li {
   color: #7a6a58;
   text-decoration: underline;
   padding: 6px 4px;
-  font-family: var(--font-display);
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
 }
@@ -152,28 +158,24 @@ li {
   padding-top: 56px;
 }
 
-.home-logo-img {
-  height: 84px;
-  width: auto;
+.service-logo {
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--color-primary);
   margin-bottom: 4px;
 }
 
-.home-sparkle {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 8px;
+.home-illustration {
+  margin: 0 auto 20px;
+  width: 160px;
+  height: 160px;
 }
 
 .tagline {
   color: #7a6a58;
   font-weight: 500;
+  font-size: 17px;
   margin-bottom: 32px;
-}
-
-.home-illustration {
-  margin: 0 auto 32px;
-  width: 140px;
-  height: 140px;
 }
 
 .home-actions {
@@ -184,12 +186,11 @@ li {
 /* Inputs */
 .search-input {
   width: 100%;
-  padding: 12px 14px;
+  padding: 13px 14px;
   border-radius: var(--radius-control);
   border: 1.5px solid #f0ddc4;
   background: #fff;
-  font-family: var(--font-display);
-  font-size: 14px;
+  font-size: 16px;
   margin: 10px 0;
 }
 
@@ -207,12 +208,11 @@ li {
 }
 
 .category-chip {
-  padding: 6px 12px;
+  padding: 7px 14px;
   border-radius: 999px;
   border: 1.5px solid #f0ddc4;
   background: #fff;
-  font-family: var(--font-display);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.12s ease, background 0.12s ease;
@@ -239,12 +239,11 @@ li {
 }
 
 .ingredient-list-item {
-  padding: 8px 14px;
+  padding: 9px 16px;
   border-radius: 999px;
   border: 1.5px solid #f0ddc4;
   background: #fff;
-  font-family: var(--font-display);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.12s ease, background 0.12s ease;
@@ -273,11 +272,10 @@ li {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 6px 12px;
+  padding: 7px 13px;
   border-radius: 999px;
   background: #f4e8d8;
-  font-family: var(--font-display);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
 }
 
@@ -285,7 +283,7 @@ li {
   border: none;
   background: none;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
   color: #8a7a6a;
   line-height: 1;
 }
@@ -320,7 +318,7 @@ li {
 
 .inline-error {
   color: #d64545;
-  font-size: 13px;
+  font-size: 15px;
   margin: 6px 0;
 }
 
@@ -330,6 +328,7 @@ li {
   text-align: center;
   padding: 32px 16px;
   color: #7a6a58;
+  font-size: 17px;
 }
 
 .empty-state-illustration {
@@ -342,6 +341,7 @@ li {
 .fridge-summary {
   color: #7a6a58;
   font-weight: 600;
+  font-size: 17px;
   margin-bottom: 12px;
 }
 
@@ -357,13 +357,13 @@ li {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 12px 14px;
+  padding: 13px 14px;
   margin-bottom: 8px;
   border-radius: var(--radius-control);
   border: 1.5px solid #f0ddc4;
   background: #fff;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
   transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
 }
 
@@ -382,18 +382,19 @@ li {
 
 .fridge-item-quantity {
   color: #8a7a6a;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .fridge-editable-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 14px;
+  padding: 13px 14px;
   margin-bottom: 8px;
   border-radius: var(--radius-control);
   border: 1.5px solid #f0ddc4;
   background: #fff;
+  font-size: 16px;
 }
 
 .fridge-editable-actions {
@@ -425,7 +426,7 @@ li {
 .modal-field {
   display: block;
   margin: 12px 0;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   color: #7a6a58;
 }
@@ -434,11 +435,10 @@ li {
   display: block;
   width: 100%;
   margin-top: 6px;
-  padding: 10px 12px;
+  padding: 11px 12px;
   border-radius: var(--radius-control);
   border: 1.5px solid #f0ddc4;
-  font-family: var(--font-display);
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .modal-field input:focus {
@@ -483,19 +483,20 @@ li {
 }
 
 .recipe-card h3 {
+  font-size: 19px;
   font-weight: 700;
   margin: 0 0 4px;
 }
 
 .recipe-card-time {
   color: #8a7a6a;
-  font-size: 13px;
+  font-size: 15px;
   margin: 4px 0;
   font-weight: 600;
 }
 
 .recipe-card-description {
-  font-size: 13px;
+  font-size: 15px;
   color: #6b5a48;
 }
 
@@ -507,9 +508,9 @@ li {
 }
 
 .ingredient-tag {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
-  padding: 4px 10px;
+  padding: 4px 11px;
   border-radius: 999px;
 }
 
@@ -528,7 +529,7 @@ li {
   color: var(--color-accent-sage-text);
   padding: 8px 14px;
   border-radius: 999px;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   margin: 10px 0;
   display: inline-block;
@@ -537,20 +538,21 @@ li {
 .selected-ingredients-summary {
   color: #7a6a58;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 /* Recipe detail */
 .recipe-detail-time {
   color: #8a7a6a;
   font-weight: 600;
+  font-size: 16px;
   margin-bottom: 12px;
 }
 
 .recipe-steps p {
   margin: 6px 0;
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 .required-ingredients-list {
@@ -559,9 +561,9 @@ li {
 }
 
 .required-ingredients-list li {
-  padding: 8px 0;
+  padding: 9px 0;
   border-bottom: 1px solid #f0ddc4;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 /* Toast */
@@ -579,14 +581,9 @@ li {
 .toast {
   background: #3a2c1e;
   color: #fff;
-  padding: 10px 16px;
+  padding: 11px 18px;
   border-radius: var(--radius-control);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   box-shadow: 0 8px 20px rgba(58, 44, 30, 0.3);
-}
-
-/* Decorative illustrations */
-.sparkle {
-  color: var(--color-primary-light);
 }

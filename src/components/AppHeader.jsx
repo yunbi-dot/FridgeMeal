@@ -1,8 +1,13 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
 export function AppHeader() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  if (location.pathname === '/') {
+    return null;
+  }
 
   return (
     <header className="app-header">
