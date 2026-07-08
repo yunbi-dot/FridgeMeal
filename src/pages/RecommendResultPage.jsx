@@ -7,6 +7,9 @@ import { EmptyState } from '../components/EmptyState';
 import { ErrorState } from '../components/ErrorState';
 import { InfoBadge } from '../components/InfoBadge';
 import { PrimaryButton } from '../components/PrimaryButton';
+import { Chip } from '../components/Chip';
+
+const MAX_HISTORY = 9;
 
 export function RecommendResultPage() {
   const location = useLocation();
@@ -20,6 +23,8 @@ export function RecommendResultPage() {
   const [relaxed, setRelaxed] = useState(false);
   const [excludeIds, setExcludeIds] = useState([]);
   const [status, setStatus] = useState('idle'); // idle | loading | success | error
+  const [history, setHistory] = useState([]);
+  const [expandedHistoryItem, setExpandedHistoryItem] = useState(null);
 
   async function fetchRecommendations(exclude) {
     setStatus('loading');
@@ -42,9 +47,19 @@ export function RecommendResultPage() {
   }, []);
 
   function requestMoreRecommendations() {
+    const mergedHistory = [...history, ...results].slice(-MAX_HISTORY);
+    setHistory(mergedHistory);
+    setExpandedHistoryItem((current) =>
+      current && mergedHistory.some((item) => item.recipe_id === current.recipe_id) ? current : null,
+    );
+
     const nextExclude = [...excludeIds, ...results.map((r) => r.recipe_id)];
     setExcludeIds(nextExclude);
     fetchRecommendations(nextExclude);
+  }
+
+  function toggleHistoryItem(recipe) {
+    setExpandedHistoryItem((current) => (current?.recipe_id === recipe.recipe_id ? null : recipe));
   }
 
   function backToSelection() {
@@ -63,6 +78,27 @@ export function RecommendResultPage() {
     <div className="page">
       <h1>추천 결과</h1>
       <p className="selected-ingredients-summary">선택한 재료: {ingredients.join(', ')}</p>
+
+      {history.length > 0 && (
+        <div className="recommend-history">
+          <div className="recommend-history-chips">
+            {history.map((item) => (
+              <Chip
+                key={item.recipe_id}
+                label={item.name}
+                onClick={() => toggleHistoryItem(item)}
+                active={expandedHistoryItem?.recipe_id === item.recipe_id}
+              />
+            ))}
+          </div>
+          {expandedHistoryItem && (
+            <RecipeCard
+              recipe={expandedHistoryItem}
+              onClick={() => navigate(`/recipes/${expandedHistoryItem.recipe_id}?mode=${mode}`)}
+            />
+          )}
+        </div>
+      )}
 
       {status === 'loading' && <p className="muted">추천 결과를 불러오는 중...</p>}
 

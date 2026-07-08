@@ -203,6 +203,30 @@ h2 {
   line-height: 1;
 }
 
+.chip-clickable {
+  border: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.chip.active {
+  background: #ffe4d1;
+  color: #ff7a30;
+  font-weight: 600;
+}
+
+/* Recommend history */
+.recommend-history {
+  margin: 4px 0 12px;
+}
+
+.recommend-history-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
 .inline-error {
   color: #d64545;
   font-size: 13px;

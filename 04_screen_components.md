@@ -140,6 +140,12 @@ fridgeItems.length === 0 →
 ```
 <RecommendResultPage>
   <SelectedIngredientsSummary items={ingredients} />
+  <RecommendHistory
+    items={history}
+    expandedItem={expandedHistoryItem}
+    onSelectChip={toggleHistoryItem}
+    onSelectExpandedCard={(recipe) => navigate(`/recipes/${recipe.recipe_id}?mode=${mode}`)}
+  />
   <RecipeCardList
     cards={recommendResults}
     onSelectCard={(recipe) => navigate(`/recipes/${recipe.recipe_id}?mode=${mode}`)}
@@ -153,17 +159,46 @@ fridgeItems.length === 0 →
   <CookingTime />
   <ShortDescription />
 </RecipeCard>
+
+<RecommendHistory>
+  <Chip.list>  {/* 최근 9개, FIFO */}
+  {expandedItem && <RecipeCard recipe={expandedItem} onClick={onSelectExpandedCard} />}
+</RecommendHistory>
 ```
 
+**위치**: "선택한 재료: ..." 요약 문구 바로 아래, `<InfoBadge>`/추천 카드 리스트보다 위쪽.
+
 **서버 상태**: `POST /recommend` 결과 → `recommendResults`, `excludeIds`(누적)
+
+**로컬 상태 (재추천 히스토리)**
+| 상태명 | 타입 | 설명 |
+|---|---|---|
+| history | Recipe[] | "다른 메뉴 보기"로 교체되기 전 보여줬던 카드들의 누적 목록. 최근 9개까지만 유지(FIFO) |
+| expandedHistoryItem | Recipe \| null | 히스토리 칩 클릭으로 펼쳐진 카드 (없으면 null) |
 
 **"다른 메뉴 보기" 동작**
 ```js
 requestMoreRecommendations = () => {
+  // 교체되기 전 카드 3개를 히스토리에 누적하고 최근 9개만 유지한다.
+  history = [...history, ...recommendResults].slice(-9);
+  // 히스토리에서 제거된(FIFO로 밀려난) 항목이 펼쳐져 있었다면 닫는다.
+  if (expandedHistoryItem && !history.includes(expandedHistoryItem)) expandedHistoryItem = null;
+
   excludeIds.push(...recommendResults.map(r => r.recipe_id));
   refetch({ ingredients, exclude_recipe_ids: excludeIds });
 };
 ```
+
+**히스토리 칩 클릭 동작**
+```js
+toggleHistoryItem = (recipe) => {
+  // 같은 칩을 다시 누르면 닫히고, 다른 칩을 누르면 그 카드로 바뀐다.
+  expandedHistoryItem = expandedHistoryItem?.recipe_id === recipe.recipe_id ? null : recipe;
+};
+```
+펼쳐진 카드를 클릭하면 추천 카드와 동일하게 `/recipes/:id?mode=${mode}`로 이동한다.
+
+**히스토리 초기화**: `history`/`expandedHistoryItem`은 이 화면의 로컬 상태이므로, 재료 선택 화면으로 돌아가 새로운 추천을 시작(`RecommendResultPage` 재진입)하면 자동으로 초기화된다.
 
 **예외 UI**
 | 상황 | 컴포넌트 |
@@ -203,7 +238,7 @@ requestMoreRecommendations = () => {
 | `SearchInput` | 검색창 (재료 선택, 내 냉장고, 냉장고 관리 공통) |
 | `EmptyState` | 빈 상태 안내 (냉장고 비어있음, 추천 결과 없음 등 공통) |
 | `ErrorState` | 에러 안내 + 재시도 |
-| `Chip` | 선택된 재료 표시용 |
+| `Chip` | 선택된 재료 표시용. `onClick` 전달 시 클릭 가능한 버튼형 칩으로 동작(추천 결과의 재추천 히스토리에서 사용), `active`로 선택 강조 표시 |
 | `Toast` | 저장 성공/실패 알림 |
 
 ## 5. 전역 상태 vs 로컬 상태 정리
