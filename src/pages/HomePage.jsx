@@ -17,6 +17,8 @@ export function HomePage() {
         <span className="home-dot home-dot-1" />
         <span className="home-dot home-dot-2" />
         <span className="home-dot home-dot-3" />
+        <span className="home-dot home-dot-4" />
+        <span className="home-dot home-dot-5" />
       </div>
 
       <div className="home-content">
